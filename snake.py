@@ -1,6 +1,13 @@
 import pygame, sys, time, random 
+pygame.init()
 
-speed = 15
+speed = 12
+
+soundtrack = pygame.mixer.music.load('BoxCat Games - Passing Time.mp3')
+pygame.mixer.music.play(-1)
+
+eat_sound = pygame.mixer.Sound('smw_kick.wav')
+
 
 #windows sizes 
 
@@ -98,6 +105,7 @@ while True:
     if head_pos[0] == food_pos[0] and head_pos[1] == food_pos[1]:
         score += 1
         food_spawn = False
+        eat_sound.play()
     else:
         snake_body.pop()
     
