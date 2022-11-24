@@ -6,6 +6,7 @@ speed = 15
 soundtrack = pygame.mixer.music.load('BoxCat Games - Passing Time.mp3')
 pygame.mixer.music.play(-1)
 eat_sound = pygame.mixer.Sound('smw_kick.wav')
+game_over_sound = pygame.mixer.Sound('smw_ludwig_morton_roy_beat.wav')
 
 FONT = pygame.font.SysFont('Arial', 60)
 
@@ -134,14 +135,20 @@ while True:
         game_over_text = FONT.render(f"GAME OVER!", True, (255,255,255))
         score_text = FONT.render(f"Pontuação máxima: {score}", True, (255, 255, 255))
         game_window.blit(game_over_text, (frame_size_x/2, frame_size_y/2))
-        game_window.blit(score_text, (frame_size_x/2, frame_size_y/2 - 60))
+        game_window.blit(score_text, (frame_size_x/2, frame_size_y/2 + 60))
+
+        game_over_sound.play()
 
         pygame.display.update()
         time.sleep(8)
+        #pygame.mixer.music.stop()
         init_vars()
     for block in snake_body[1:]:
         if head_pos[0] == block[0] and head_pos[1] == block[1]:
             game_over()
+            
+        
+            
 
     show_score(1, white, 'consolas', 20)
     pygame.display.update()
